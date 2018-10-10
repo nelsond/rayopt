@@ -53,11 +53,12 @@ setup(
     test_suite="rayopt.test",
     ext_modules=cythonize([
         Extension("rayopt._transformations",
-                  sources=["rayopt/_transformations.c"]),
+                  sources=["rayopt/_transformations.c"],
+                  include_dirs=[np.get_include()]),
         Extension("rayopt.simplex_accel",
-                  sources=["rayopt/simplex_accel.pyx"]),
+                  sources=["rayopt/simplex_accel.pyx"],
+                  include_dirs=[np.get_include()]),
     ]),
-    include_dirs=[np.get_include()],
     entry_points={},
     package_data={
         "rayopt": ["library.sqlite"],
